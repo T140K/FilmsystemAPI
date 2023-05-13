@@ -34,7 +34,7 @@ namespace FilmSystemAPI.Models
         {
             modelBuilder.Entity<FavGenre>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Id);
 
                 entity.ToTable("FavGenre");
 

@@ -62,5 +62,43 @@ namespace FilmSystemAPI.Controllers
         {
             return Ok(await _context.People.ToListAsync());
         }*/
+
+        [HttpPost("AddFavGenre/{personId}/{genreId}")]
+        public async Task<IActionResult> AddFavGenre(int personId, int genreId)
+        {
+            try
+            {
+                var existingFavGenre = await _context.FavGenres
+                    .FirstOrDefaultAsync(fg => fg.Person == personId && fg.Genre == genreId);
+
+                if (existingFavGenre != null)
+                {
+                    return BadRequest("FavGenre already exists for the person and genre.");
+                }
+
+                var person = await _context.People.FindAsync(personId);
+                var genre = await _context.Genre.FindAsync(genreId);
+
+                if (person == null || genre == null)
+                {
+                    return BadRequest("Invalid Person or Genre");
+                }
+
+                var newFavGenre = new FavGenre
+                {
+                    Person = personId,
+                    Genre = genreId
+                };
+
+                _context.FavGenres.Add(newFavGenre);
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
     }
 }

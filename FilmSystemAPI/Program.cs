@@ -1,6 +1,5 @@
 using FilmSystemAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using FilmSystemAPI.Models;
 
 namespace FilmSystemAPI
 {

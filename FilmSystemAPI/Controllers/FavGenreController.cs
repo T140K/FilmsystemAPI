@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static System.Net.WebRequestMethods;
 
 namespace FilmSystemAPI.Controllers
 {
@@ -99,6 +100,19 @@ namespace FilmSystemAPI.Controllers
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
+        }
+
+        [HttpGet("MovieRecommendation/{tmdbId}")]
+        public async Task<ActionResult> MovieReccomendation(int tmdbId)
+        {
+            var tmdbUrl = $"https://api.themoviedb.org/3/discover/movie?api_key=6483a9c164f7dc2408db3fe747bcdefd&with_genres={tmdbId}";
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(tmdbUrl);
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            return Ok(responseBody);
         }
     }
 }

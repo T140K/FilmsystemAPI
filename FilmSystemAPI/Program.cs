@@ -1,4 +1,6 @@
 using FilmSystemAPI.Models;
+using Microsoft.EntityFrameworkCore;
+using FilmSystemAPI.Models;
 
 namespace FilmSystemAPI
 {
@@ -9,6 +11,8 @@ namespace FilmSystemAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<FilmSystemContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionstring")));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -9,11 +9,13 @@ namespace FilmSystemAPI.Models
     {
         public FilmSystemContext()
         {
+
         }
 
         public FilmSystemContext(DbContextOptions<FilmSystemContext> options)
             : base(options)
         {
+
         }
 
         public virtual DbSet<FavGenre> FavGenres { get; set; } = null!;
@@ -21,14 +23,6 @@ namespace FilmSystemAPI.Models
         public virtual DbSet<Movie> Movies { get; set; } = null!;
         public virtual DbSet<MovieReview> MovieReviews { get; set; } = null!;
         public virtual DbSet<Person> People { get; set; } = null!;
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=localhost;Database=FilmSystem;Trusted_Connection=True;");
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

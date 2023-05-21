@@ -21,5 +21,19 @@ namespace FilmSystemAPI.Controllers
         {
             return Ok(await _context.People.ToListAsync());
         }
+
+        [HttpGet("GetPersonById/{personId}")]
+        public async Task<ActionResult<List<FavGenre>>> GetPersonById(int personId)
+        {
+            var person = await _context.People
+                .Where(p => p.Id == personId)
+                .Select(p => new
+                {
+                    p.Id, p.FirstName, p.LastName, p.Email
+                })
+                .ToListAsync();
+
+            return Ok(person);
+        }
     }
 }

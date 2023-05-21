@@ -2225,7 +2225,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MF DOOM\\.nuget\\packages\\": {}
+    "C:\\Users\\Yummi\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
@@ -2233,11 +2234,15 @@
       "projectUniqueName": "E:\\VS-Projects\\FilmSystemAPI\\FilmSystemAPI\\FilmSystemAPI.csproj",
       "projectName": "FilmSystemAPI",
       "projectPath": "E:\\VS-Projects\\FilmSystemAPI\\FilmSystemAPI\\FilmSystemAPI.csproj",
-      "packagesPath": "C:\\Users\\MF DOOM\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Yummi\\.nuget\\packages\\",
       "outputPath": "E:\\VS-Projects\\FilmSystemAPI\\FilmSystemAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\MF DOOM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Yummi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2245,6 +2250,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2297,7 +2303,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

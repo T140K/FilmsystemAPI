@@ -12,7 +12,13 @@ namespace FilmSystemAPI
             // Add services to the container.
             builder.Services.AddDbContext<FilmSystemContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionstring")));
-
+            builder.Services.AddCors(options =>
+            options.AddPolicy("MyPolicy",
+            builder => {
+            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                    }
+                )
+            );
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -27,6 +33,7 @@ namespace FilmSystemAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseCors("MyPolicy");
 
             app.UseHttpsRedirection();
 

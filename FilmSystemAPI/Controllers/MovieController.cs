@@ -17,11 +17,15 @@ namespace FilmSystemAPI.Controllers
         }
 
         [HttpGet("GetMovieByPersonId/{personId}")]
-        public async Task<ActionResult<List<Movie>>> GetMoviesById(int personId)
+        public async Task<ActionResult<List<Movie>>> GetMovieByPersonId(int personId)
         {
             var movies = await _context.Movies
                 .Where(m => m.Uploader == personId)
-                .Select(m => m.Name)
+                .Select(m => new 
+                { 
+
+                    m.Name, m.MovieGenre, m.Link
+                })
                 .ToListAsync();
 
 

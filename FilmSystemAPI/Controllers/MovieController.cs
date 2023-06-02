@@ -16,6 +16,24 @@ namespace FilmSystemAPI.Controllers
             _context = context;
         }
 
+        [HttpGet("GetAllMovies")]
+        public async Task<ActionResult<List<Movie>>> GetMovieByPersonId()
+        {
+            var movies = await _context.Movies
+                .Select(m => new
+                {
+                    m.Id,
+                    m.Name,
+                    m.MovieGenre,
+                    m.Link,
+                    m.Uploader
+                })
+                .ToListAsync();
+
+
+            return Ok(movies);
+        }
+
         [HttpGet("GetMovieByPersonId/{personId}")]
         public async Task<ActionResult<List<Movie>>> GetMovieByPersonId(int personId)
         {

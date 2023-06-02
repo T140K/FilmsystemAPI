@@ -63,8 +63,8 @@ namespace FilmSystemAPI.Controllers
                     return BadRequest("This is already uploaded.");
                 }
 
-                var cMovieGenre = await _context.People.FindAsync(movieGenre);
-                var cUploader = await _context.Genre.FindAsync(uploader);
+                var cMovieGenre = await _context.Genre.FindAsync(movieGenre);
+                var cUploader = await _context.People.FindAsync(uploader);
 
                 if (cMovieGenre == null || cUploader == null)
                 {

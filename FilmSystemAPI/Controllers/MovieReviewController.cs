@@ -34,5 +34,45 @@ namespace FilmSystemAPI.Controllers
 
             return Ok(reviews);
         }
+
+        [HttpPost("AddMovieReview/{personId}/{movieId}/{rating}/{review}")]
+        public async Task<IActionResult> AddFavGenre(int personId, int movieId, int rating, string review)
+        {
+            try
+            {
+                var existingRating = await _context.MovieReviews
+                    .FirstOrDefaultAsync(fg => fg.ReviewPerson == personId && fg.Movie == movieId);
+
+                if (existingRating != null)
+                {
+                    return BadRequest("You already gave a review for this movie");
+                }
+
+                var person = await _context.People.FindAsync(personId);
+                var movie = await _context.Movies.FindAsync(movieId);
+
+                if (person == null || movie == null)
+                {
+                    return BadRequest("Person or movie doesnt exist");
+                }
+
+                var newMovieReview = new MovieReview
+                {
+                    ReviewPerson = personId,
+                    Movie = movieId,
+                    Rating = rating,
+                    Review = review
+                };
+
+                _context.MovieReviews.Add(newMovieReview);
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
     }
 }

@@ -85,7 +85,7 @@ namespace FilmSystemAPI.Models
 
             modelBuilder.Entity<MovieReview>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Id);
 
                 entity.ToTable("MovieReview");
 
